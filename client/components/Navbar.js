@@ -20,7 +20,7 @@ const Navbar = () => {
     ]
 
   return (
-    <nav className="flex justify-around py-4 shadow-md bg-white">
+    <nav className="flex justify-around py-4 shadow-md bg-white sticky top-0 z-100">
       <h1 className="logo font-bold text-blue-600 text-xl">Blog App</h1>
       <ul className="menu flex gap-5">
         {

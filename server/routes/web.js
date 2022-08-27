@@ -5,9 +5,7 @@ const router = express.Router();
 
 
 router.get('/', mainController.home)
-router.get('/w', (req, res)=> {
-    res.send('working')
-})
+router.post('/upload', mainController.upload)
 
 
 

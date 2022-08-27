@@ -2,9 +2,12 @@ import React from 'react'
 import Image from 'next/image'
 import {IoPersonCircleSharp, IoShareSocialSharp} from 'react-icons/io5'
 
+
 const PostCard = ( {data} ) => {
+    const dumy = "asdasd \n asdfa s \n asd"
+
   return (
-    <div className='post-card md:px-[20%]'>
+    <div className='post-card md:px-[20%] shadow-md m-5 my-10'>
         <div className="post-header">
             <h3 className='text-2xl text-center font-semibold text-gray-700 pb-5'>
                 {data.title}
@@ -15,8 +18,8 @@ const PostCard = ( {data} ) => {
           
         </div>
         <div className="post-body text-center py-2">
-            <p className='whitespace-pre-wrap'>
-                {data.poem}
+            <p className='whitespace-pre-wrap' >
+                {data && data.poem.replace(/\\n/g, "\n")}
             </p>
         </div>
         <div className="post-footer flex justify-between items-center gap-2">

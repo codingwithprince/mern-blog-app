@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema({
-    name: {type: String, required: true},
-    age: { type: Number, required: true}
+    title: {type: String},
+    writer: {type: String, trim: true},
+    poem: {type: String}
 })
 
 
