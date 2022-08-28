@@ -6,6 +6,10 @@ const router = express.Router();
 
 router.get('/', mainController.home)
 router.post('/upload', mainController.upload)
+router.get('/update/:id', mainController.getUpdate)
+router.put('/update/:id', mainController.putUpdate)
+router.delete('/delete/:id', mainController.deletePost)
+
 
 
 

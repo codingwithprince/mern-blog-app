@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema({
-    title: {type: String},
-    writer: {type: String, trim: true},
-    poem: {type: String}
+    title: {type: String, required: true},
+    writer: {type: String, required: true, trim: true},
+    poem: {type: String , required: true},
+    date: { type: Date, required: true, default: Date.now}
 })
 
 

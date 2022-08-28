@@ -2,6 +2,7 @@ import express, { urlencoded } from "express";
 import web from "./routes/web.js";
 import connectDataBase from "./db/connectDataBase.js";
 import cors from "cors";
+import bodyParser from "body-parser";
 
 const app = express();
 const port = process.env.port || 3001;
@@ -12,7 +13,8 @@ const uri = `mongodb+srv://codingwithprince:${pass}@prince.itq09qk.mongodb.net/b
 app.use(cors());
 
 // middleware
-app.use(express.urlencoded({ extended: true }))
+app.use(bodyParser.json({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 
 // setting home routes

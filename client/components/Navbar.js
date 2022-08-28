@@ -16,7 +16,11 @@ const Navbar = () => {
         {
             name: 'Login',
             link: '/'
-        }
+        },
+        {
+          name: 'Admin',
+          link: '/admin'
+        } 
     ]
 
   return (

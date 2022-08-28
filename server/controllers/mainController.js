@@ -12,16 +12,38 @@ class mainController {
 
   static upload = async(req, res) => {
     try {
-        // const doc = postModel({
-        //     title: 'anime',
-        //     writer: 'prince',
-        //     poem: 'poem'
-        // })
-        // await doc.save()
-        console.log(req.body);
-        res.send(req.body)
+        const doc = postModel(req.body)
+        await doc.save()
     } catch (error) {
         console.log(error);
+    }
+  }
+
+  static getUpdate = async(req, res) => {
+    try {
+        const result = await postModel.findById(req.params.id)
+        res.send(result)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  static putUpdate = async(req, res) => {
+    try {
+        const result = await postModel.findByIdAndUpdate(req.params.id, req.body)
+        res.send(result)
+        console.log('Updated');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  static deletePost = async(req, res) => {
+    try {
+        const result = await postModel.findByIdAndDelete(req.params.id)
+        console.log('Deleted..');
+    } catch (error) {
+      console.log(error);
     }
   }
 }
