@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import PostCard from './PostCard'
+import EditPost from '../EditPost/EditPost'
+import SkeletonPost from './SkeletonPost'
+import SpinLoader from '../SpinLoader/SpinLoader'
 
 const Posts = () => {
-  const [posts, setPosts] = useState([{
-    id:1,
-    title: 'ANy thing',
-    poem: 'lorem4 fasdf'
-  }])
+  const [posts, setPosts] = useState()
 
   useEffect(()=>{
     fetch('http://localhost:3001/')
@@ -16,9 +15,8 @@ const Posts = () => {
 
   return (
     <div className='py-10'>
-        {/* <h2 className='text-2xl font-semibold text-gray-600'>Posts</h2> */}
         {
-          posts && posts.map(item => <PostCard key={item.id} data={item} />)
+          posts == null ? <SpinLoader /> : posts.map(item => <PostCard key={item.id} data={item} />)
         }
     </div>
   )

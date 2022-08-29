@@ -31,8 +31,6 @@ class mainController {
   static putUpdate = async(req, res) => {
     try {
         const result = await postModel.findByIdAndUpdate(req.params.id, req.body)
-        res.send(result)
-        console.log('Updated');
     } catch (error) {
       console.log(error);
     }
