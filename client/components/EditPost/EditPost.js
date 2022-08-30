@@ -27,7 +27,7 @@ const EditPost = () => {
     const handleUpdate = (e) =>{
       e.preventDefault()
       updatePost(router.query.id)
-      router.push('/admin')
+      router.push('/')
     }
 
 

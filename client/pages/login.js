@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState , createContext, useContext, useEffect} from "react";
 import { useRouter } from "next/router";
+import UserContext from "./UserContext";
 import Head from "next/head";
 import Image from "next/image";
 import axios from "axios";
@@ -9,6 +10,10 @@ const login = () => {
   const router = useRouter();
   const [user, setUser] = useState();
   const [admin, setAdmin] = useState();
+  const [warning, setWarning] = useState(false);
+
+  const { value } = useContext(UserContext)
+  const [ loggedIn, setLoggedIn] = value
 
   const onBlurHandler = (e) => {
     e.preventDefault();
@@ -25,9 +30,10 @@ const login = () => {
     try {
       const isMatched = await bcrypt.compare(user.password, admin.password);
       if (admin.email == user.email && isMatched) {
-        router.push("/");
+        setLoggedIn(true)
+        router.push("/admin");
       } else {
-        window.alert('Wrong pass or email')
+        setWarning(true)
       }
     } catch (error) {
       console.log(error);
@@ -45,6 +51,9 @@ const login = () => {
 
   useEffect(() => {
     fetchUser();
+    if(loggedIn){
+      router.push('/admin')
+    }
   }, []);
 
   return (
@@ -86,15 +95,19 @@ const login = () => {
               required
             />
           </div>
-          <div className="flex flex-col pt-5">
+          <div className="flex flex-col pt-5 relative">
             <button
               onClick={(e) => loginHandler(e)}
-              className="py-2 px-3 rounded-md bg-red-500 text-white"
+              className="py-2 px-3 rounded-md bg-indigo-500 text-white"
             >
               Login
             </button>
+            {
+               warning &&  <p className="text-red-600 text-center mt-20 animate-pulse absolute  left-0 right-0 m-auto">Email or password is incorrect.</p>
+            }
           </div>
         </form>
+       
       </main>
     </div>
   );

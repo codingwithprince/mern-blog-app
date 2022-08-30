@@ -1,11 +1,24 @@
-import React, { useState } from 'react'
+import { useState, createContext, useContext, useEffect } from "react";
 import Head from 'next/head'
 import Image from 'next/image'
+import { useRouter } from "next/router";
 import CreateDoc from '../components/Create/CreateDoc'
-import LoginVerify from '../components/LoginVerify/LoginVerify'
+import UserContext from "./UserContext";
+import SpinLoader from "../components/SpinLoader/SpinLoader";
 
 const admin = () => {
-    const [ loggedIn, setLoggedIn] = useState(false)
+    const { value } = useContext(UserContext)
+    const [ loggedIn, setLoggedIn] = value
+    const router = useRouter()
+
+    useEffect(()=>{
+
+      if(!loggedIn){
+        router.push('/login')
+      }
+
+    },[])
+
   return (
     <div>
     <Head>
@@ -16,9 +29,10 @@ const admin = () => {
     <main className='px-[5%] md:px-[20%] bg-slate-100'>
       {/* ==== All posts */}
       {
-        loggedIn ?  <CreateDoc /> : <LoginVerify setLoggedIn={setLoggedIn} />
+        loggedIn ?  <CreateDoc /> : <SpinLoader />
       }
-       
+      
+      
     </main>
   </div>
   )

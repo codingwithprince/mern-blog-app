@@ -17,7 +17,7 @@ const Posts = () => {
   return (
     <div className="py-10">
        <div className="post-sidebar">
-        <div className="wrapper flex flex-row-reverse justify-between">
+        <div className="wrapper md:flex flex-row-reverse justify-between">
           <div className="author-info text-center rounded-md p-3">
             <Image
               height={200}

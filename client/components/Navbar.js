@@ -1,26 +1,24 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import UserContext from '../pages/UserContext';
 import React from "react";
 import Link from "next/link";
+import { IoPersonCircleSharp} from 'react-icons/io5'
 
 const Navbar = () => {
   const [active, setActive] = useState('home')
+
+  const { value } = useContext(UserContext)
+  const [ loggedIn, setLoggedIn] = value
+
     const menu = [
         {
             name: 'home',
             link: '/'
         },
         {
-            name: 'poem',
-            link: '/'
-        },
-        {
-            name: 'Login',
+            name: `${loggedIn ? 'Dashboard' : 'login'}`,
             link: '/login'
-        },
-        {
-          name: 'Admin',
-          link: '/admin'
-        } 
+        }
     ]
 
   return (
@@ -36,6 +34,12 @@ const Navbar = () => {
                 </li>
             ))
         }
+        <li>
+          {
+            loggedIn &&   <IoPersonCircleSharp color='white' size={30} />
+          }
+         
+        </li>
        
       </ul>
     </nav>

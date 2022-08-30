@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useContext} from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import UserContext from '../../pages/UserContext'
+import { AiFillEdit} from 'react-icons/ai'
 import {IoPersonCircleSharp, IoShareSocialSharp} from 'react-icons/io5'
 
 
 const PostCard = ( {data} ) => {
+
+    const { value } = useContext(UserContext)
+    const [ loggedIn, setLoggedIn] = value
+
 
     const shareHandler = (id) =>{
         if(navigator.share){
@@ -24,7 +31,7 @@ const PostCard = ( {data} ) => {
   return (
     <div id={data._id} className='post-card hover:shadow-lg md:px-[20%] px-3 shadow-md py-5 my-5 bg-white rounded-md'>
         <div className="post-header">
-            <h3 className='text-2xl text-center font-semibold text-indigo-500 pb-5'>
+            <h3 className='text-2xl text-center font-semibold text-rose-700 pb-5'>
                 {data.title}
             </h3>
             
@@ -47,13 +54,22 @@ const PostCard = ( {data} ) => {
                     <IoPersonCircleSharp color='gold' size={50} />
                 </div>
                 <div className="writer-info">
-                    <h3 className="writer-name font-semibold text-gray-500">{data.writer}</h3>
-                    <p className='writer-name text-gray-500'>{data.date}</p>
+                    <h3 className="writer-name text-rose-700">{data.writer}</h3>
+                    <p className='writer-name text-lime-700'>{data.date}</p>
                 </div>
             </div>
-            <button className='text-gray-500'>
-                <IoShareSocialSharp size={30} />
-            </button>
+            <div className="buttons flex items-center gap-3">
+                {
+                    loggedIn && <Link href={`/update/${data._id}`}>
+                    <AiFillEdit className='text-pink-500' size={25} />
+                </Link>
+                }
+                
+                <button className='text-sky-500'>
+                    <IoShareSocialSharp size={25} />
+                </button>
+            </div>
+          
           
         </div>
     </div>
