@@ -9,6 +9,8 @@ router.post('/upload', mainController.upload)
 router.get('/update/:id', mainController.getUpdate)
 router.put('/update/:id', mainController.putUpdate)
 router.delete('/delete/:id', mainController.deletePost)
+router.get('/login', mainController.getUser)
+router.post('/login', mainController.userVerify)
 
 
 

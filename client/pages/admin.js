@@ -2,12 +2,10 @@ import React, { useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import CreateDoc from '../components/Create/CreateDoc'
+import LoginVerify from '../components/LoginVerify/LoginVerify'
 
 const admin = () => {
-    const [user, setUser] = useState({
-        name: 'price',
-        pass: '123546'
-    })
+    const [ loggedIn, setLoggedIn] = useState(false)
   return (
     <div>
     <Head>
@@ -17,7 +15,10 @@ const admin = () => {
     </Head>
     <main className='px-[5%] md:px-[20%] bg-slate-100'>
       {/* ==== All posts */}
-        <CreateDoc />
+      {
+        loggedIn ?  <CreateDoc /> : <LoginVerify setLoggedIn={setLoggedIn} />
+      }
+       
     </main>
   </div>
   )

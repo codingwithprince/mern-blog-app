@@ -15,7 +15,7 @@ const Navbar = () => {
         },
         {
             name: 'Login',
-            link: '/'
+            link: '/login'
         },
         {
           name: 'Admin',
@@ -24,12 +24,12 @@ const Navbar = () => {
     ]
 
   return (
-    <nav className="flex justify-around py-4 shadow-md bg-white sticky top-0 z-100">
-      <h1 className="logo font-bold text-blue-600 text-xl">Blog App</h1>
+    <nav className="flex justify-around py-4 shadow-md bg-indigo-500 sticky top-0 z-100">
+      <h1 className="logo font-bold text-white text-xl">Blog App</h1>
       <ul className="menu flex gap-5">
         {
             menu.map((item, i) => (
-                <li onClick={()=> setActive(item.name)} key={i} className={`capitalize text-lg hover:text-blue-600 font-semibold ${ active == item.name ? 'text-blue-600' : 'text-gray-600' } `}>
+                <li onClick={()=> setActive(item.name)} key={i} className={`capitalize text-lg hover:text-white  ${ active == item.name ? 'text-white font-semibold' : 'text-gray-300' } `}>
                     <Link href={item.link}>
                       <a> {item.name} </a>
                     </Link>
