@@ -1,7 +1,7 @@
 import React, { useContext} from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import UserContext from '../../pages/UserContext'
+import UserContext from '../../components/UserContext'
 import { AiFillEdit} from 'react-icons/ai'
 import {IoPersonCircleSharp, IoShareSocialSharp} from 'react-icons/io5'
 
@@ -16,7 +16,7 @@ const PostCard = ( {data} ) => {
         if(navigator.share){
             navigator.share({
                 text: 'Dekho to',
-                url: `http://localhost:3000/update/${id}`
+                url: `https://mern-crud-blog-app.herokuapp.com/update/${id}`
             })
             .then(()=> {
                 console.log('Successful');

@@ -9,7 +9,7 @@ const EditPost = () => {
   const router = useRouter()
 
     useEffect(()=>{
-      axios.get(`http://localhost:3001/update/${router.query.id}`)
+      axios.get(`https://mern-crud-blog-app.herokuapp.com/update/${router.query.id}`)
       .then(res => setPost(res.data))
       .catch(error => console.log(error))
     },[])
@@ -17,7 +17,7 @@ const EditPost = () => {
 
     const updatePost = async(id) => {
       try {
-        await axios.put(`http://localhost:3001/update/${id}`, post)
+        await axios.put(`https://mern-crud-blog-app.herokuapp.com/update/${id}`, post)
         console.log("Updated");
       } catch (error) {
         console.log(error);

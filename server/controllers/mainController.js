@@ -16,6 +16,7 @@ class mainController {
     try {
         const doc = postModel(req.body)
         await doc.save()
+        res.send('uploaded')
     } catch (error) {
         console.log(error);
     }
@@ -33,6 +34,7 @@ class mainController {
   static putUpdate = async(req, res) => {
     try {
         const result = await postModel.findByIdAndUpdate(req.params.id, req.body)
+        res.send(res)
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +43,7 @@ class mainController {
   static deletePost = async(req, res) => {
     try {
         const result = await postModel.findByIdAndDelete(req.params.id)
-        console.log('Deleted..');
+        res.send('Deleted')
     } catch (error) {
       console.log(error);
     }
@@ -56,22 +58,6 @@ class mainController {
     }
   }
 
-  static userVerify = async(req, res) => {
-    try {
-        const result = await userModel.find()
-        const isMatched = await bcrypt.compare(req.body.password, result[0].password)
-        if(req.body.email == result[0].email &&  isMatched ){
-          res.send({
-            admin: true
-          })
-        } else {
-          res.send(result)
-        }
-        
-    } catch (error) {
-      console.log(error);
-    }
-  }
 }
 
 export default mainController;

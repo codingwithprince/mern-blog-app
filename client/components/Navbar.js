@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import UserContext from '../pages/UserContext';
+import UserContext from '../components/UserContext';
 import React from "react";
 import Link from "next/link";
 import { IoPersonCircleSharp} from 'react-icons/io5'

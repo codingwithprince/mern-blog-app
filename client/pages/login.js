@@ -1,6 +1,6 @@
 import React, { useState , createContext, useContext, useEffect} from "react";
 import { useRouter } from "next/router";
-import UserContext from "./UserContext";
+import UserContext from "../components/UserContext";
 import Head from "next/head";
 import Image from "next/image";
 import axios from "axios";
@@ -42,7 +42,7 @@ const login = () => {
 
   const fetchUser = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/login");
+      const res = await axios.get("https://mern-crud-blog-app.herokuapp.com/login");
       setAdmin(res.data[0]);
     } catch (error) {
       console.log(error);

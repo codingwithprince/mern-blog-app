@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import Layout from '../components/Layout'
 import { useState } from 'react'
-import UserContext from './UserContext'
+import UserContext from '../components/UserContext'
 
 function MyApp({ Component, pageProps }) {
 

@@ -6,10 +6,8 @@ const DeleteDoc = ({setOpen, handleDelete, item}) => {
     const router = useRouter()
 
     const deleteDoc =(id) => {
-        console.log(id);
         handleDelete(id)
         setOpen(false)
-        router.reload('/admin')
     }
   
   return (

@@ -18,9 +18,8 @@ const PostList = ({data}) => {
 
     const handleDelete = async(id) => {
         try {
-            const res = await axios.delete(`http://localhost:3001/delete/${id}`)
-            console.log(res)
-            console.log('Deleted');
+            const res = await axios.delete(`https://mern-crud-blog-app.herokuapp.com/delete/${id}`)
+            console.log(res);
         } catch (error) {
             console.log(error);
         }
@@ -41,7 +40,7 @@ const PostList = ({data}) => {
             <tbody>
                 {
                 data && data.map(item => (
-                        <tr className='even:bg-slate-200 odd:bg-white p-3 text-center py-5 capitalize'>
+                        <tr key={item._id} className='even:bg-slate-200 odd:bg-white p-3 text-center py-5 capitalize'>
                             <td className='py-3 font-semibold'>{i++}</td>
                             <td className='font-semibold'>{item.title}</td>
                             <td>{item.date}</td>

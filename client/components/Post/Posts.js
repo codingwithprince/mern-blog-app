@@ -9,7 +9,7 @@ const Posts = () => {
   const [posts, setPosts] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:3001/")
+    fetch("https://mern-crud-blog-app.herokuapp.com/")
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, []);

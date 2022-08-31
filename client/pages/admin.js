@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from "next/router";
 import CreateDoc from '../components/Create/CreateDoc'
-import UserContext from "./UserContext";
+import UserContext from "../components/UserContext";
 import SpinLoader from "../components/SpinLoader/SpinLoader";
 
 const admin = () => {

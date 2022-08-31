@@ -7,13 +7,24 @@ const CreateDoc = () => {
     const [list, setList] = useState()
     const [post, setPost] = useState({})
     
-    const postUpload = async() =>{
+
+    const postToDataBase = async() => {
         try {
-            const res = await axios.post('http://localhost:3001/upload', post)
+            const res = await axios.post('https://mern-crud-blog-app.herokuapp.com/upload', post)
             console.log(res);
         } catch (error) {
             console.log(error);
         }
+    }
+
+    const postUpload = (e) =>{
+        e.preventDefault()
+        postToDataBase()
+        setPost({
+            title: '',
+            writer: '',
+            poem: ''
+        })
     }
 
     const onBlurHandler = (e) => {
@@ -23,17 +34,18 @@ const CreateDoc = () => {
        })
     }
 
+
     useEffect(()=>{
         const fetchAllData = async () =>{
             try {
-                const res = await axios.get('http://localhost:3001/')
+                const res = await axios.get('https://mern-crud-blog-app.herokuapp.com/')
                 setList(res.data)
             } catch (error) {
                 console.log(error);
             }
         }
         fetchAllData()
-    }, [])
+    }, [postUpload])
 
   return (
     <div className= 'py-10 bg-slate-100'>
@@ -41,19 +53,19 @@ const CreateDoc = () => {
         <h3 className='text-center text-2xl text-gray-700 py-3'>Create a Post</h3>
             <form method="post" className='md:px-[30%]'>
                 <div className='flex flex-col'>
-                    <label className='py-2 text-gray-400 font-semibold' for='title'>Title</label>
-                    <input onBlur={(e)=> onBlurHandler(e)} className='shadow-md py-3 px-2 rounded-md border-2 border-sky-200 focus:outline-red-200' type="text" name="title" id="title"  required/>
+                    <label className='py-2 text-gray-400 font-semibold' htmlFor='title'>Title</label>
+                    <input onChange={(e)=> onBlurHandler(e)} value={post.title} className='shadow-md py-3 px-2 rounded-md border-2 border-sky-200 focus:outline-red-200' type="text" name="title" id="title"  required/>
                 </div>
                 <div className='flex flex-col'>
-                    <label className='py-2 text-gray-400 font-semibold' for='writer'>Writer</label>
-                    <input  onBlur={(e)=> onBlurHandler(e)} className='shadow-md py-3 px-2 rounded-md border-2 border-sky-200 focus:outline-red-200' type="text" name="writer" id="writer"  required/>
+                    <label className='py-2 text-gray-400 font-semibold' htmlFor='writer'>Writer</label>
+                    <input  onChange={(e)=> onBlurHandler(e)} value={post.writer} className='shadow-md py-3 px-2 rounded-md border-2 border-sky-200 focus:outline-red-200' type="text" name="writer" id="writer"  required/>
                 </div>
                 <div className='flex flex-col'>
-                    <label className='py-2 text-gray-400 font-semibold' for='poem'>Poem</label>
-                    <textarea  onBlur={(e)=> onBlurHandler(e)} rows={5} className='shadow-md py-3 px-2 rounded-md border-2 border-sky-200 focus:outline-red-200' type="text" name="poem" id="poem"  required/>
+                    <label className='py-2 text-gray-400 font-semibold' htmlFor='poem'>Poem</label>
+                    <textarea  onChange={(e)=> onBlurHandler(e)} rows={5} value={post.poem} className='shadow-md py-3 px-2 rounded-md border-2 border-sky-200 focus:outline-red-200' type="text" name="poem" id="poem"  required/>
                 </div>
                 <div className="flex flex-col pt-5 pb-5">
-                    <button onClick={()=> postUpload()} className='py-2 px-3 rounded-md bg-blue-500 text-white'>Upload</button>
+                    <button onClick={(e)=> postUpload(e)} className='py-2 px-3 rounded-md bg-blue-500 text-white'>Upload</button>
                 </div>
             </form>
         </div>
